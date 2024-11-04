@@ -15,6 +15,41 @@ class Post extends Model
         'user_id',
     ];
 
+        /**
+     * Scope a query to only include posts by a specific user.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int $userId
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByUser($query, $userId)
+    {
+        return $query->where('user_id', $userId);
+    }
+
+     /**
+     * Get the title attribute in title case.
+     *
+     * @param string $value
+     * @return string
+     */
+    public function getTitleAttribute($value)
+    {
+        return ucwords($value);
+    }
+
+    /**
+     * Get the created_at attribute in a human-readable format.
+     *
+     * @param string $value
+     * @return string
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return \Carbon\Carbon::parse($value)->diffForHumans();
+    }
+
+    
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -9,8 +9,14 @@
             <h3 class="text-primary"> {{ $post->title }} </h3>
             <p class="text-muted"> {{ $post->content }} </p>
             <p><strong class="text-secondary"> Author: </strong> {{ $post->user->name }} </p>
+            <p><em>Posted: {{ $post->created_at }}</em></p>
         </div>
         @endforeach
+    </div>
+
+    <!-- Pagination Links -->
+    <div class="d-flex justify-content-center mt-4">
+        {{ $posts->links('pagination::bootstrap-4') }}
     </div>
 </div>
 @endsection
