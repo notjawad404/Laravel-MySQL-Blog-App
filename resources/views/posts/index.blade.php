@@ -8,7 +8,13 @@
         <div class="mb-3 bg-light border rounded shadow p-3">
             <h3 class="text-primary"> {{ $post->title }} </h3>
             <p class="text-muted"> {{ $post->content }} </p>
-            <p><strong class="text-secondary"> Author: </strong> {{ $post->user->name }} </p>
+            <p><strong class="text-secondary"> Author: </strong>
+            @if(Auth::id() == $post->user_id)
+                <span>Me</span>
+            @else
+             {{ $post->user->name }} 
+            @endif
+            </p>
             <p><em>Posted: {{ $post->created_at }}</em></p>
         </div>
         @endforeach

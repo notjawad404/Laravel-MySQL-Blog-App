@@ -38,16 +38,16 @@ class Post extends Model
         return ucwords($value);
     }
 
-    /**
-     * Get the created_at attribute in a human-readable format.
-     *
-     * @param string $value
-     * @return string
-     */
-    public function getCreatedAtAttribute($value)
-    {
-        return \Carbon\Carbon::parse($value)->diffForHumans();
-    }
+/**
+ * Get the created_at attribute in a formatted "Month name, date, Year" format.
+ *
+ * @param string $value
+ * @return string
+ */
+public function getCreatedAtAttribute($value)
+{
+    return \Carbon\Carbon::parse($value)->format('F j, Y, g:i A');
+}
 
     
     public function user()
